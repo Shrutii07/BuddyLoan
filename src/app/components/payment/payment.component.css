@@ -1,0 +1,54 @@
+.heading{
+  color:#38045e;
+  border-top-right-radius: '10px';
+  border-top-left-radius: '10px';
+  text-align:'center'
+}
+
+.host {
+    /* display: flex; */
+   /* flex-direction: column; */
+    /* flex-basis: 70%; */
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    /* background: linear-gradient(
+         rgba(255, 255, 255, 0.7),
+         rgba(255, 255, 255, 0.3)
+       ), */
+    background-image: url("../../images/v960-ning-05.jpg");
+    background-size: cover;
+
+    background-position: center;
+  }
+.form{
+  background-color: whitesmoke;
+} 
+.vh-100{
+  display: flex;
+  justify-content: center;
+}
+
+.offset-3 {
+  margin-left: 0%;
+}
+#partial{
+  padding-left: 40px;
+}
+.pay{
+  color:#38045e ;
+}
+
+
+button{
+  background-color: #38045e;
+  color: white;
+  width: 100%;
+}
+
+button:disabled{
+  background-color: lightslategray;
+  pointer-events: none;
+  color: white;
+  width: 100%;
+}

@@ -1,0 +1,26 @@
+.host {
+  /* display: flex; */
+ /* flex-direction: column; */
+  /* flex-basis: 70%; */
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow-y: auto;
+  /* background: linear-gradient(
+       rgba(255, 255, 255, 0.7),
+       rgba(255, 255, 255, 0.3)
+     ), */
+  background-image:    url("../../images/v960-ning-05.jpg");
+  background-size: cover;
+
+  background-position: center;
+}
+.footer-card{
+  padding: 25px 20px 25px 0;
+}
+.header-card{
+  padding: 20px;
+}
+.host-card{
+  padding: 20px 0 0 0;
+}

@@ -1,0 +1,69 @@
+.button {
+    border: none;
+    outline:none;
+}
+
+.bg{
+    background-color:  whitesmoke;
+    
+}
+
+.text{
+    color:#26167f;
+}
+
+.nav-item{
+    padding-right: 60px;
+}
+.button
+{
+    background-color:  whitesmoke;
+}
+.collapse{
+    margin: 5px;
+}
+.navbar-brand{
+    padding:0%;
+    margin:0%;
+}
+
+.hover-underline-animation {
+    display: inline-block;
+    position: relative;
+    color: 
+    #26167f;
+  }
+  
+  .hover-underline-animation:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: 
+    rgb(6, 6, 6);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  
+  .hover-underline-animation:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  .active {
+    font-weight: bold;
+  }
+  .navbar-nav .nav-link.active, .navbar-nav .show>.nav-link {
+    color: #26167f;
+    
+}
+.logo-image{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+   float:right;
+   
+}

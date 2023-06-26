@@ -1,0 +1,28 @@
+<form [formGroup]="userForm" (ngSubmit)="submit()">
+    <img class="logo"src="https://drive.google.com/uc?export=view&id=1v5qsI3iha-LsDdKG6lQQP9_cvi9UOs3-">
+    
+    <h1>BuddyLoan </h1>
+    <h3>User Login</h3>
+
+    <div>
+       
+        <input id="adhaarId" class="input" type="text" formControlName="adhaarId" placeholder="Enter your Adhaar Number" [class.invalid-input]="!userForm.get('adhaarId')?.valid && !userForm.get('adhaarId')?.pristine" >
+        <span *ngIf="!userForm?.get('adhaarId')?.valid && !userForm?.get('adhaarId')?.pristine">Please enter adhaar number containing exact 12 Digits!</span>
+    </div>
+    
+
+    <div>
+        
+        <input id="password" class="input" type="password" [class.invalid-input]="!userForm.get('password')?.valid && !userForm.get('password')?.pristine" formControlName="password" placeholder="Enter Password">
+        <span *ngIf="!userForm?.get('password')?.valid && !userForm?.get('password')?.pristine">Please enter password with 8-20 characters and atleast 1 letter, 1 number and 1 special character!</span>
+    </div>
+    
+    <div class="button-last">
+        <button  type="submit" [class.disable-button]="!userForm.valid">Login</button>
+    </div>
+    <div class="form-group ">
+        <a routerLink="../forgot-password" class="btn btn-link">Forgot Password?</a>
+        <a routerLink="/alogin" class="btn btn-link">Are you an Admin?</a>
+    </div>
+
+</form>

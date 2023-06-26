@@ -1,0 +1,76 @@
+<div class="vh-100 host">
+    <div class="col-lg-6 col-sm-12 offset-3">
+
+    <div class="card">
+    <form [formGroup]="form" class="card-body" (ngSubmit)="onSubmit()">
+
+        <h2 class="text-center mb-3 p-3 text-uppercase card-title heading">Payment Details</h2>
+    
+        
+        <div class="justify-content-center align-items-center" >
+
+            <div class="form-group mb-3">
+                <label>Bank Name</label>
+               <select name="type" id="bankname" class="form-select custom-select" formControlName="bankname" (change)="getAccNumByName()">
+               <option value="" disabled selected>Select your Bank</option>
+               <option *ngFor="let name of banks" [value]="name.bankName">{{name.bankName}}</option>
+               </select>
+                <small *ngIf="form.controls['bankname'].hasError('required') && form.controls['bankname'].touched" class="text-danger">
+                    Select Bank Name
+                </small>
+            </div>
+            <div class="form-group mb-3">
+                <label>Account Number</label>
+              <input type="number" class="form-control" id="accountno" formControlName="accountno" placeholder="Account Number">
+              <small class="text-danger" *ngIf="!form?.get('accountno')?.valid && !form?.get('accountno')?.pristine">Account Number should be 6 digits</small>
+            </div>
+            <div class="form-group mb-3">
+               <label>Loan Id</label>
+               <select name="type" id="loanid" class="form-select custom-select" formControlName="loanid" (change)="OnSelected($event)">
+                <option value="" disabled selected>Select your Loan</option>
+                <option *ngFor="let id of loans" [value]="id.loanId">{{id.loanId}}</option>
+               </select>
+                <small *ngIf="form.controls['loanid'].hasError('required') && form.controls['loanid'].touched" class="text-danger">
+                    Loan Id is required.
+                </small>
+
+            </div>
+            <div class="form-group mb-3">
+                <input type="radio" id="fullradio" data-toggle="toggle" formControlName="radio" name="radio" value="fullradio" (click)="onFull()"> Full Payment &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     
+                <input type="radio" id="partialradio"  data-toggle="toggle" formControlName="radio" name="radio" value="partialradio" (click)="onPartial()" > Partial Payment
+                <br>
+                <small *ngIf="form.controls['radio'].hasError('required') && form.controls['radio'].touched" class="text-danger">
+                    Select Payment Option
+                </small>
+                 
+            </div>
+            <div *ngIf="isMonthsActive" class="form-group mb-3">
+                <label>Months</label>
+              <input type="number" class="form-control" id="months" formControlName="months" placeholder="Enter Months" (change)="MonthChange()">
+              <small class="text-danger" *ngIf="!form?.get('accountno')?.valid && !form?.get('accountno')?.touched">Enter number of months</small>
+            </div>
+            <div class="form-group mb-3">
+                <h6 class="d-flex  justify-content-between text-uppercase ">Amount To Be Paid (In Rupees):  <span>
+                    <h4 class="pay " *ngIf="isFullActive">{{this.amountToBePaid }}</h4>
+                    <h4 class="pay" *ngIf="isPartialActive">{{this.amountToBePaid}}</h4>
+                </span></h6>
+                
+            </div>
+            
+            <button [disabled]="!form.valid" type="submit" class="btn btn-primary">PAY</button>
+            
+        </div>
+
+    </form>
+    
+
+</div>
+</div>
+
+</div>
+<app-footer></app-footer>
+    
+    
+    
+    
+    

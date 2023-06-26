@@ -1,0 +1,33 @@
+<form [formGroup]="adminForm" (ngSubmit)="submit()">
+   
+        <img class="logo"src="https://drive.google.com/uc?export=view&id=1v5qsI3iha-LsDdKG6lQQP9_cvi9UOs3-">
+   
+    <h1>BuddyLoan</h1>
+    <h3>Admin Login</h3>
+   
+    <div>
+       
+        <input id="employeeId" class="input" type="text" formControlName="employeeId" placeholder="Enter your Employee Id" [class.invalid-input]="!adminForm.get('employeeId')?.valid && !adminForm.get('employeeId')?.pristine" >
+        <span *ngIf="!adminForm?.get('employeeId')?.valid && !adminForm?.get('employeeId')?.pristine">Please enter the emplyee number starting with RBS and followed by 4 Digits!</span>
+    </div>
+    
+
+    <div>
+        
+        <input id="password" class="input" type="password" [class.invalid-input]="!adminForm.get('password')?.valid && !adminForm.get('password')?.pristine" formControlName="password" placeholder="Enter Password">
+        <span *ngIf="!adminForm?.get('password')?.valid && !adminForm?.get('password')?.pristine">Please enter password with 8-20 charecters and atleast 1 letter, 1 number and 1 special character!</span>
+    </div>
+    
+    <div class="button-last">
+        <button  type="submit" [class.disable-button]="!adminForm.valid">Login</button>
+    </div>
+    <div class="form-group ">
+        <div class="space">
+
+            <a routerLink="/register" class="btn btn-link pr-0"> Signup as Admin?</a>   
+            <a routerLink="/login" class="btn btn-link pr-0">Are you a User?</a>
+        </div> 
+        <a routerLink="../forgot-password" class="btn btn-link pr-0">Forgot Password?</a>
+    </div>
+
+</form>

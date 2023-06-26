@@ -1,0 +1,67 @@
+<div class="vh-100 host">
+    <div class="col-lg-6 col-sm-12 offset-3">
+
+    <div class="card">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="card-body" >
+
+            <h1 class="text-center mb-3 p-3 text-uppercase card-title heading">Apply for loan</h1>
+        
+            
+            <div class="justify-content-center align-items-center" >
+
+            <div class='form-group mb-3'>
+                <label class="card-text">Amount you need</label>
+                <input formControlName="amount" class="form-control" name="amount"  type="number" placeholder="Enter Amount">
+
+                <div *ngIf="form.controls['amount'].hasError('required') && form.controls['amount'].touched" class="text-danger">
+                    Amount is required.
+                </div>
+                <div *ngIf="form.controls['amount'].hasError('min')" class="text-danger">
+                    Minimum required amount is 1000.
+                </div>
+                <div *ngIf="form.controls['amount'].hasError('max')" class="text-danger">
+                    You have exceeded the maximum loan amount you can avail.
+                </div>
+                <!-- <small [hidden]="form.get('amount')?.valid" class= "text-danger " > Invalid: Enter 6 digit account number </small> -->
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="card-text" for="type">Select purpose of Loan </label>
+                <select name="type" id="type" class="form-select custom-select" 
+                formControlName="purpose">
+                <option *ngFor="let type of categories"
+                    [value]="type">{{type}}</option>
+                </select>
+
+                <div *ngIf="form.controls['purpose'].hasError('required') && form.controls['purpose'].touched" class="text-danger">
+                    Purpose is required.
+                </div>
+            </div>
+        
+            <div class='form-group mb-4'>
+                <label class="card-text">Loan Term (in months)</label>
+                <input formControlName="duration" class="form-control" name="duration"  type="number" placeholder="Enter Loan Duration">   
+                <div *ngIf="form.controls['duration'].hasError('required') && form.controls['duration'].touched" class="text-danger">
+                    Duration is required.
+                </div>
+                <div *ngIf="form.controls['duration'].hasError('min')" class="text-danger">
+                    Minimum duration is 1 month.
+                </div>
+                <!-- <small [hidden]="form.get('amount')?.valid" class= "text-danger " > Invalid: Enter 6 digit account number </small> -->
+            </div>
+        
+        
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Apply now</button>
+            </div>
+        </div>
+
+        </form>
+
+    </div>
+
+
+
+</div>
+</div>
+<app-footer></app-footer>

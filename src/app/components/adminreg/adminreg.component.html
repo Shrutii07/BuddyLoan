@@ -1,0 +1,48 @@
+<form [formGroup]="adminForm" (ngSubmit)="submit()">
+    <img class="logo"src="https://drive.google.com/uc?export=view&id=1v5qsI3iha-LsDdKG6lQQP9_cvi9UOs3-">
+    <!-- 1EK5IDIEisT_Rjg0TE-SnAFEmfK2zDFgP -->
+   
+    <h1>BuddyLoan</h1>
+    <h3>Admin Register</h3>
+   
+    <div class="newone">
+       
+        <input id="employeeId" class="input" type="text" formControlName="employeeId" placeholder="Enter your Employee Id" [class.invalid-input]="!adminForm.get('employeeId')?.valid && !adminForm.get('employeeId')?.pristine" >
+        <span *ngIf="!adminForm?.get('employeeId')?.valid && !adminForm?.get('employeeId')?.pristine">Please enter ID starting with RBS followed by 4 Digits!</span>
+    </div>
+    
+    <div class="newone">
+       
+        <input id="name" class="input" type="text" formControlName="name" placeholder="Enter your Name" [class.invalid-input]="!adminForm.get('name')?.valid && !adminForm.get('name')?.pristine" >
+        <span *ngIf="!adminForm?.get('name')?.valid && !adminForm?.get('name')?.pristine">Please enter a valid name in Sentence Case of max 20 charecters</span>
+    </div>
+    
+    <div class="newone">
+       
+        <input id="email" class="input" type="email" formControlName="email" placeholder="Enter your email" [class.invalid-input]="!adminForm.get('email')?.valid && !adminForm.get('email')?.pristine" >
+        <span *ngIf="!adminForm?.get('email')?.valid && !adminForm?.get('email')?.pristine">Please check and enter your company domain email id!</span>
+    </div>
+    <div class="newone">
+        
+        <input id="password" class="input" type="password" [class.invalid-input]="!adminForm.get('password')?.valid && !adminForm.get('password')?.pristine" formControlName="password" placeholder="Enter Password">
+        <span *ngIf="!adminForm?.get('password')?.valid && !adminForm?.get('password')?.pristine">Please enter password with 8-20 charecters and atleast 1 letter, 1 number and 1 special character!</span>
+    </div>
+
+    <div class="newone">
+       
+        <input id="image" class="input" type="text" [class.invalid-input]="!adminForm?.get('image')?.valid && !adminForm?.get('image')?.pristine"formControlName="image" placeholder="Upload image" >
+        <span *ngIf="!adminForm?.get('image')?.valid && !adminForm?.get('image')?.pristine">Please check and upload a valid drive link of your image! </span>
+    </div>
+    
+    <div class="button-last">
+        <button  type="submit" [class.disable-button]="!adminForm.valid">Register</button>
+    </div>
+    <div class="form-group newone">
+        
+            <a routerLink="../forgot-password" class="btn btn-link pr-0">Forgot Password?</a>
+        
+      
+        <a routerLink="/alogin" class="btn btn-link pr-0">Already an Admin?</a>
+    </div>
+
+</form>

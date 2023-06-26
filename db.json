@@ -1,0 +1,17 @@
+{
+    "Customers" :[ {
+        "Txn_Number":12312343, 
+        "Amount":14000, 
+        "Date":"2022-09-28", 
+        "Loan_ID":145687, 
+        "Due_date":"2024-10-12", 
+        "Progress_value":75 
+    }
+    ],
+    "user":[ {
+        "adhaarId": "766622118843",
+        "password": "Apoorva@123"
+      }]
+    
+    
+}

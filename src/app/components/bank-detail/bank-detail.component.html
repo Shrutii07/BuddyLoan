@@ -1,0 +1,174 @@
+<div *ngIf="isActive" class="host host-card">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+  <div class="col-lg-10 col-xl-8">
+
+  <div class="card-header text-center my-4 px-4 py-4" 
+  [ngStyle]="{background:'#38045e', color:'whitesmoke', 
+  borderTopLeftRadius: '10px', borderTopRightRadius: '10px'}">
+      Welcome {{customer.name}} !!
+  </div>
+
+  <div class="container my-2">
+      <div class="card text-center border-secondary mb-3">
+          <div class="card-header" [ngStyle]="{color: '#38045e'}">Profile</div>
+          <div class="card-body">
+            <h5 class="card-title text-muted mb-0">User Name: {{customer.name}}</h5>
+            <p class="card-text text-muted mb-0">Email: {{customer.email}}</p>
+            <p class="card-text text-muted mb-0">Aadhar Id: {{customer.aadhaarId}}</p>
+          </div>
+      </div>
+      <div>
+      <div class="accordion my-4" id="accordionFlushExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+              data-bs-target="#flush-collapseOne" aria-expanded="false" 
+              aria-controls="flush-collapseOne" [ngStyle]="{color:'#38045e'}">
+              <strong>Show Bank Details</strong>
+              </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse float-start mt-2 me-2 ms-2" 
+               aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample"
+               *ngFor="let customer of banks;let i=index">
+              <div class="card text-left border-secondary mb-3">
+                  <div class="card-body text-secondary">
+                    <div class="accordion-body text-left">
+                      <div class="card-header" [ngStyle]="{color: 'rgb(60, 60, 60)'}">{{customer.bankName}}</div>
+                      <p class="card-text text-left text-muted mb-2 mt-2">Account Number : {{customer.accountNum}}</p>
+                      <p class="card-text text-left text-muted mb-0 me-2 float-start">Balance : </p>
+                      <p class="card-text text-left text-muted ms-2 me-2 float-start">
+                        <span *ngIf="showList[i]; else elseBlock">{{customer.bankBalance}}</span>
+                        <ng-template #elseBlock>XXXX</ng-template>
+                      </p>
+                      <button (click)="showBalance(i)" type="button" class="btn btn-light py-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" fill="currentColor" 
+                             class="bi bi-eye-fill" viewBox="0 0 16 16" *ngIf="isSet[i]">
+                          <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                          <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                          class="bi bi-eye-slash-fill" viewBox="0 0 16 16" *ngIf="!isSet[i]">
+                          <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 
+                                7.029 0 0 0 2.79-.588zM5.21 
+                                3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5
+                                3.5 0 0 0-4.474-4.474L5.21 3.089z"/>
+                          <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 
+                                1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z"/>
+                        </svg>
+                      </button>
+                  </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+      
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+            data-bs-target="#flush-collapseTwo" aria-expanded="false" 
+            aria-controls="flush-collapseTwo" [ngStyle]="{color:'#38045e'}">
+            <strong>Show Loans</strong>
+            </button>
+          </h2>
+          <div id="flush-collapseTwo" class="accordion-collapse collapse mt-2 me-2 ms-2" 
+               aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                <div class="card text-center border-secondary mb-3">
+                    <div class="card-body text-secondary">
+                      <div class="dropdown">
+                        <select class="btn btn-primary dropdown-toggle text-white" #loan
+                         [ngStyle]="{color: 'whitesmoke', backgroundColor:'#38045e'}" (change)="loanchange(loan.value)">
+                            <option value="" disabled selected>Select below</option>
+                            <option value="1">Completed</option>
+                            <option value="2">Active</option>
+                            <option value="3">Pending</option>
+                        </select>
+                    </div>
+                    </div>
+                </div>
+
+
+
+                <div>
+                  <div *ngIf="isCompleted">
+                    <h6 class="accordion-header" [ngStyle]="{color:'#38045e'}"><strong>Completed Loans</strong></h6>
+                    <div class="float-start mt-2 me-2 ms-2" 
+                         *ngFor="let loan of completedLoans">
+                          <div class="card text-center border-secondary mb-3">
+                              <div class="card-body text-secondary">
+                                  <div class="card-header" [ngStyle]="{color: 'rgb(60, 60, 60)'}">{{loan.loanType}}</div>
+                                  <p class="card-text text-muted mb-0 mt-2" >Loan ID: {{loan.loanId}}</p>
+                                  <p class="card-text text-muted">Loan Amount: {{loan.loanAmount}}</p>
+                              </div>
+                          </div>
+                    </div>
+                  </div>
+        
+        
+                  <div *ngIf="isActiveLoan">
+                    <h6 lass="accordion-header" [ngStyle]="{color:'#38045e'}">
+                       <strong>Active Loans</strong>
+                    </h6>
+                    <div class="float-start mt-2 me-2 ms-2" *ngFor="let loan of loans">
+                          <div class="card text-center border-secondary mb-3">
+                            <div class="card-body text-secondary">
+                                <div class="card-header" [ngStyle]="{color: 'rgb(60, 60, 60)'}">{{loan.loanType}}</div>
+                                <p class="card-text text-muted mb-0 mt-2" >Loan ID: {{loan.loanId}}</p>
+                                <p class="card-text text-muted mb-0">Loan Installment: {{loan.emi}}</p>
+                                <p class="card-text text-muted mb-0">Interest Rate: {{loan.interestRate}}%</p>
+                                <h6 class="card-text mb-2 mt-2" [ngStyle]="{color: '#006400'}">Active</h6>
+                                <button (click)="navigateToPayment()" type="button" class="btn btn-light btn-sm" 
+                                   [ngStyle]="{background:'#38045e', color:'whitesmoke'}">
+                                    Pay Now
+                                </button>
+                            </div>
+                          </div>
+                    </div>
+                  </div>
+        
+                  <div *ngIf="isPending">
+                    <h6 class="accordion-header" [ngStyle]="{color:'#38045e'}">
+                      <strong>Pending Loans</strong>
+                    </h6>
+                    <div class="float-start mt-2 me-2 ms-2" *ngFor="let loan of localLoans;let i=index">
+                          <div class="card text-center border-secondary mb-3" *ngIf="loan.status===false">
+                            <div class="card-body text-secondary">
+                                <div class="card-header" [ngStyle]="{color: 'rgb(60, 60, 60)'}">{{loan.loanType}}</div>
+                                <p class="card-text text-muted mb-0 mt-2" >Loan Amount: {{loan.loanAmount}}</p>
+                                <h6 class="card-text mb-2 mt-2" [ngStyle]="{color: '#FF0000'}">Rejected</h6>
+                            </div>
+                          </div>
+        
+                          <div class="card text-center border-secondary mb-3" *ngIf="loan.status===null">
+                            <div class="card-body text-secondary">
+                                <div class="card-header" [ngStyle]="{color: 'rgb(60, 60, 60)'}">{{loan.loanType}}</div>
+                                <p class="card-text text-muted mb-0 mt-2" >Loan Amount: {{loan.loanAmount}}</p>
+                                <h6 class="card-text text-muted mb-2 mt-2">Pending</h6>
+                            </div>
+                          </div>
+                    </div>
+                  </div>
+                  </div>
+        
+        
+        
+
+
+          </div>
+        </div>
+      </div>
+      </div>
+
+
+    </div>
+
+  </div>
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-lg-10 col-xl-8">
+      <div class="card-footer my-4 px-6 py-4"
+           [ngStyle]="{backgroundColor: '#38045e', borderBottomLeftRadius: '10px', borderBottomRightRadius: '10px'}">
+      </div> 
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

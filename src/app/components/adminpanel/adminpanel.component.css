@@ -1,0 +1,68 @@
+.host {
+    /* display: flex; */
+   /* flex-direction: column; */
+    /* flex-basis: 70%; */
+    align-items: center;
+    justify-content: center;
+    
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow: scroll;
+    background-image: 
+       url("../../images/1649672106469.webp");
+    background-size:cover;
+
+    background-position: center;
+
+    overflow-y: scroll;
+  }
+#logo{ 
+	position:fixed; 
+	top:0; 
+	left:0; 
+} 
+
+.float-child.green {
+  float: left;
+  margin-right: 5px;
+  width: 55%;
+}
+
+.float-child.magenta {
+  float: right;  
+  margin-right: 128px;
+  width: 35%;
+}
+
+
+.h-100 {
+   height: 100%;
+}
+.card{
+  margin:20px;
+  display:flex;
+  height:auto;
+  overflow: scroll;
+  overflow-y: scroll;
+}
+.card-body {
+ display:flex;
+ flex-direction: column;
+ height:auto;
+ overflow: scroll;
+}
+
+
+.fw-normal {
+  font-weight: 500!important;
+}
+.header-card{
+  padding: 20px;
+}
+.host-card{
+  padding: 20px 0 0 0;
+}
+.card-body{
+  display: flex;
+  overflow-y: scroll;
+}

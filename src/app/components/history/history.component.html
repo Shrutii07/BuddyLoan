@@ -1,0 +1,143 @@
+<div class="host host-card">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-lg-10 col-xl-8">
+      <div class="container my-2">
+      <div class="card" [ngStyle]="{borderRadius:'10px'}">
+        <div class="card-header my-4 px-4 py-4" [ngStyle]="{ 
+          borderTopLeftRadius: '10px', borderTopRightRadius: '10px', backgroundColor: '#38045e'}">
+          <h5 class="mb-0 text-white">Your previous transactions, <span [ngStyle]="{color:'white'}" class="text-uppercase">{{customer.name}}</span> !</h5>
+       </div>
+       <div class="card-body p-4">
+         <div class="d-flex justify-content-between align-items-center mb-4">
+           <p class="lead fw-normal mb-0" [ngStyle]="{color: '#38045e'}">All History</p>  
+         </div>
+         <div class="card shadow-0 border mb-4">
+          <div class="card-body">
+            <div class="table-responsive-sm">
+            <table class="table table-hover">
+                <thead>
+                  <tr [ngStyle]="{color: '#38045e'}">
+                    <th scope="col">Transaction#</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Loan ID</th>
+                    <th scope="col">Due Date</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let transaction of allHistory ; let i = index">
+                  <tr>
+                    <td class="text-muted mb-0 small">{{transaction.transactionId}}</td>
+                    <td class="text-muted mb-0 small">{{transaction.amountPaid}}</td>
+                    <td class="text-muted mb-0 small">{{transaction.datePaidOn}}</td>
+                    <td class="text-muted mb-0 small">{{r[i]}}</td>
+                    <td class="text-muted mb-0 small">{{transaction.dueMonthDate}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+
+            <hr class="mb-4" [ngStyle]="{backgroundColor: '#e0e0e0', opacity: '1'}"/>
+            <div class="row d-flex align-items-center">
+              <div class="col-md-2">
+                <p class="text-muted mb-0 small">Loan Tracker</p>
+              </div>
+              <div class="col-md-10">
+                <div class="progress" [ngStyle]="{height: '6px', borderRadius: '16px'}">
+                  <div class="progress-bar" role="progressbar"
+                    [ngStyle]="{width:'15%', borderRadius: '16px', backgroundColor: '#38045e'}" 
+                    aria-valuenow={Progress_value}
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div class="d-flex justify-content-around mb-1">
+                  <p class="text-muted mt-1 mb-0 small ms-xl-5">Repaid</p>
+                  <p class="text-muted mt-1 mb-0 small ms-xl-5">Due</p>
+                </div>
+              </div>
+            </div>
+          </div>
+         </div>
+
+         <div>
+          <label [ngStyle]="{color: '#38045e'}">Loan Id</label>
+          <select name="loanid" id="loanid" [(ngModel)]="selected" class="m-2" [ngStyle]="{color: 'rgb(60, 60, 60)'}">
+            <option *ngFor="let loan of allCustomer" [value]="loan.loanId">{{loan.loanId}}</option>
+          </select>
+
+         <button (click)="checkHistory()" type="button" class="btn btn-light btn-sm m-2" 
+                             [ngStyle]="{background:'#38045e', color:'whitesmoke'}">
+                              Click to view history
+                          </button>
+          </div>
+          <div *ngIf="isActive">                 
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <p class="lead fw-normal mb-0" [ngStyle]="{color: '#38045e'}">History</p>
+            </div>
+                
+            <div class="card shadow-0 border mb-4">
+              <div class="card-body">
+                <div *ngIf="historyList.length>0; else elseBlock">
+
+
+
+                  <div class="table-responsive-sm">
+                    <table class="table table-hover">
+                        <thead>
+                          <tr [ngStyle]="{color: '#38045e'}">
+                            <th scope="col">Transaction#</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Loan ID</th>
+                            <th scope="col">Due Date</th>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let history of historyList">
+                          <tr>
+                            <td class="text-muted mb-0 small">{{history.transactionId}}</td>
+                            <td class="text-muted mb-0 small">{{history.amountPaid}}</td>
+                            <td class="text-muted mb-0 small">{{history.datePaidOn}}</td>
+                            <td class="text-muted mb-0 small">{{loanId}}</td>
+                            <td class="text-muted mb-0 small">{{history.dueMonthDate}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                <hr class="mb-4" [ngStyle]="{backgroundColor: '#e0e0e0', opacity: '1'}"/>
+                <div class="row d-flex align-items-center">
+                  <div class="col-md-2">
+                    <p class="text-muted mb-0 small">Loan Tracker</p>
+                  </div>
+                  <div class="col-md-10">
+                    <div class="progress" [ngStyle]="{height: '6px', borderRadius: '16px'}">
+                      <div class="progress-bar" role="progressbar"
+                        [ngStyle]="{width:'15%', borderRadius: '16px', backgroundColor: '#38045e'}"
+                        aria-valuenow={Progress_value}
+                        aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="d-flex justify-content-around mb-1">
+                      <p class="text-muted mt-1 mb-0 small ms-xl-5">Repaid</p>
+                      <p class="text-muted mt-1 mb-0 small ms-xl-5">Due</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <ng-template #elseBlock>
+                <p [ngStyle]="{color: '#FF0000'}">History is not available</p>
+              </ng-template>
+            </div>
+             </div>               
+          </div>
+        </div> 
+     </div>
+    </div>
+     <div class="card-footer my-4 px-4 py-4"
+        [ngStyle]="{backgroundColor: '#38045e', borderBottomLeftRadius: '10px', borderBottomRightRadius: '10px'}">
+      <h6 class="d-flex align-items-center justify-content-center text-white text-uppercase " *ngIf="isShow">Total
+          Amount Due: <span class="h4 mb-0 ms-2">&#8377;</span><span class="h4 mb-0 ms-2"> {{payable}}</span></h6>
+    </div>
+
+   </div>
+   </div>  
+ </div>
+ <app-footer></app-footer>
